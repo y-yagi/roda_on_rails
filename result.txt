@@ -1,0 +1,38 @@
+**Rails**
+
+```
+$ siege -r 200 -c 50 -b -q http://localhost:3000/users
+
+Transactions:		       10000 hits
+Availability:		      100.00 %
+Elapsed time:		      173.74 secs
+Data transferred:	      109.61 MB
+Response time:		        0.87 secs
+Transaction rate:	       57.56 trans/sec
+Throughput:		        0.63 MB/sec
+Concurrency:		       49.84
+Successful transactions:       10000
+Failed transactions:	           0
+Longest transaction:	        1.18
+Shortest transaction:	        0.04
+
+```
+
+**Roda**
+
+```
+$ siege -r 200 -c 50 -b -q http://localhost:3000/api/users
+
+Transactions:		       10000 hits
+Availability:		      100.00 %
+Elapsed time:		      150.71 secs
+Data transferred:	      109.61 MB
+Response time:		        0.75 secs
+Transaction rate:	       66.35 trans/sec
+Throughput:		        0.73 MB/sec
+Concurrency:		       49.84
+Successful transactions:       10000
+Failed transactions:	           0
+Longest transaction:	        1.03
+Shortest transaction:	        0.04
+```
