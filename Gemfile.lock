@@ -64,6 +64,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    allocation_tracer (0.6.3)
     builder (3.2.3)
     byebug (10.0.2)
     concurrent-ruby (1.1.3)
@@ -130,6 +131,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  allocation_tracer
   byebug
   graphql
   listen (>= 3.0.5, < 3.2)

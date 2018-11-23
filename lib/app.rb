@@ -13,6 +13,10 @@ class App < Roda
     end
 
     r.on 'api' do
+      r.get 'empty' do
+        [].to_json
+      end
+
       r.get 'users' do
         User.all.to_json
       end

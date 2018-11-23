@@ -1,0 +1,22 @@
+
+diff --git a/actionpack/lib/action_dispatch/routing/route_set.rb b/actionpack/lib/action_dispatch/routing/route_set.rb
+index 2ae75b0..401bd2c 100644
+--- a/actionpack/lib/action_dispatch/routing/route_set.rb
++++ b/actionpack/lib/action_dispatch/routing/route_set.rb
+@@ -830,9 +830,15 @@ def url_for(options, route_name = nil, url_strategy = UNKNOWN)
+       end
+
+       def call(env)
+-        req = make_request(env)
+-        req.path_info = Journey::Router::Utils.normalize_path(req.path_info)
+-        @router.serve(req)
++        result = nil
++        allocations = ObjectSpace::AllocationTracer.trace do
++          req = make_request(env)
++          req.path_info = Journey::Router::Utils.normalize_path(req.path_info)
++          result = @router.serve(req)
++        end
++        p "Total: #{allocations.sum {|a| a[1][0]}}\n\n"
++        pp allocations.sort {|a, b| a[1][0] <=> b[1][0] }.reverse.first(10)
++        result
+       end
