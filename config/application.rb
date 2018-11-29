@@ -17,6 +17,22 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+require_relative "../lib/app"
+
+class EmptyRouteSet
+  module EmptyHeleprs; end
+
+  def mounted_helpers
+    EmptyHeleprs
+  end
+
+  def url_helpers(*)
+    EmptyHeleprs
+  end
+
+  def method_missing(*); end
+end
+
 module RodaOnRails
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -31,5 +47,17 @@ module RodaOnRails
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    def route_app
+      @route_app ||= App.freeze.app
+    end
+
+    def call(env)
+      route_app.call env
+    end
+
+    def routes
+      @routes ||= EmptyRouteSet.new
+    end
   end
 end
