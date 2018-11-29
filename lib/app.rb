@@ -18,6 +18,7 @@ class App < Roda
       end
 
       r.get 'users' do
+        response['Content-Type'] = 'application/json'
         User.all.to_json
       end
 
