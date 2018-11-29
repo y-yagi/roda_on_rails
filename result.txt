@@ -15,7 +15,6 @@ Successful transactions:       10000
 Failed transactions:	           0
 Longest transaction:	        1.18
 Shortest transaction:	        0.04
-
 ```
 
 **Roda**
@@ -35,4 +34,23 @@ Successful transactions:       10000
 Failed transactions:	           0
 Longest transaction:	        1.03
 Shortest transaction:	        0.04
+```
+
+**Full Roda**
+
+```
+$ siege -r 200 -c 50 -b -q http://localhost:3000/api/users
+
+Transactions:		       10000 hits
+Availability:		      100.00 %
+Elapsed time:		      127.25 secs
+Data transferred:	      109.61 MB
+Response time:		        0.63 secs
+Transaction rate:	       78.59 trans/sec
+Throughput:		        0.86 MB/sec
+Concurrency:		       49.85
+Successful transactions:       10000
+Failed transactions:	           0
+Longest transaction:	        0.96
+Shortest transaction:	        0.01
 ```
